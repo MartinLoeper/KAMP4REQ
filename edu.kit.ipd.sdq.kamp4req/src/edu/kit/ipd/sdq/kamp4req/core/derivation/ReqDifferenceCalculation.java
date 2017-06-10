@@ -6,17 +6,17 @@ import org.eclipse.emf.compare.Diff;
 import org.eclipse.emf.compare.ReferenceChange;
 import org.eclipse.emf.ecore.EObject;
 import decisions.Decision;
+import edu.kit.ipd.sdq.kamp.derivation.AbstractDifferenceCalculation;
 import edu.kit.ipd.sdq.kamp.workplan.Activity;
 import edu.kit.ipd.sdq.kamp.workplan.BasicActivity;
 import edu.kit.ipd.sdq.kamp4bp.core.derivation.BPDifferenceCalculation;
 import edu.kit.ipd.sdq.kamp4is.core.ISActivityType;
-import edu.kit.ipd.sdq.kamp4is.core.derivation.AbstractISDifferenceCalculation;
 import edu.kit.ipd.sdq.kamp4req.core.ReqActivityElementType;
 import edu.kit.ipd.sdq.kamp4req.core.ReqArchitectureVersion;
 import options.Option;
 import requirements.Requirement;
 
-public class ReqDifferenceCalculation extends AbstractISDifferenceCalculation<ReqArchitectureVersion> {
+public class ReqDifferenceCalculation extends AbstractDifferenceCalculation<ReqArchitectureVersion> {
 
 	private final BPDifferenceCalculation bpDifferenceCalculation = 
 			new BPDifferenceCalculation();
