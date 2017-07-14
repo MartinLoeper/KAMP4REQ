@@ -9,6 +9,7 @@ import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.system.System;
 import org.palladiosimulator.pcm.usagemodel.UsageModel;
@@ -37,7 +38,10 @@ public class ReqArchitectureVersionPersistency extends AbstractISArchitectureVer
 	
 	@Override
 	public ReqArchitectureVersion load(String folderpath, String filename, String versionname) {
-		ResourceSet loadResourceSet = new ResourceSetImpl();	
+		ResourceSet loadResourceSet = new ResourceSetImpl();
+		ECrossReferenceAdapter adapter = new ECrossReferenceAdapter();
+		loadResourceSet.eAdapters().add(adapter);
+		
 		String repositoryfilePath = filename + "."+FILEEXTENSION_REPOSITORY;
 		String systemfilePath = filename + "."+FILEEXTENSION_SYSTEM;
 		String fieldOfActivityRepositoryFilePath = filename + "."+FILEEXTENSION_FIELDOFACTIVITYANNOTATIONS;
@@ -70,12 +74,15 @@ public class ReqArchitectureVersionPersistency extends AbstractISArchitectureVer
 		return new ReqArchitectureVersion(versionname, repository, system, fieldOfActivityRepository, 
 				modificationMarkRepository, componentInternalDependencyRepository, 
 				Collections.singletonMap(BPArchitectureVersion.USAGEMODEL_DEFAULT_NAME, usageModel), 
-				dataModel, orgEnviromentModel, requirementRepostory, decisionRepository, optionRepository);
+				dataModel, orgEnviromentModel, requirementRepostory, decisionRepository, optionRepository, adapter);
 	}
 
 	@Override
 	public ReqArchitectureVersion load(IContainer folder, String versionname) {
-		ResourceSet loadResourceSet = new ResourceSetImpl();		
+		ResourceSet loadResourceSet = new ResourceSetImpl();	
+		ECrossReferenceAdapter adapter = new ECrossReferenceAdapter();
+		loadResourceSet.eAdapters().add(adapter);
+		
 		IFile repositoryfile = FileAndFolderManagement.retrieveFileWithExtension(folder, FILEEXTENSION_REPOSITORY);
 		IFile systemfile = FileAndFolderManagement.retrieveFileWithExtension(folder, FILEEXTENSION_SYSTEM);
 		IFile fieldOfActivityRepositoryFile = FileAndFolderManagement.retrieveFileWithExtension(folder, FILEEXTENSION_FIELDOFACTIVITYANNOTATIONS);
@@ -132,7 +139,7 @@ public class ReqArchitectureVersionPersistency extends AbstractISArchitectureVer
 		return new ReqArchitectureVersion(versionname, repository, system, fieldOfActivityRepository, 
 				modificationMarkRepository, componentInternalDependencyRepository, usageModels, 
 				dataModel, organizationEnvironmentModel, requirementRepository, decisionRepository,
-				optionRepository);
+				optionRepository, adapter);
 	}
 	
 	@Override

@@ -44,7 +44,7 @@ public class ReqArchitectureModelFactoryFacade {
 				internalModificationMarkRepository, componentInternalDependencyRepository, 
 				Collections.singletonMap(BPArchitectureVersion.USAGEMODEL_DEFAULT_NAME, usageModel), 
 				dataModel, organizationEnvironmentModel, requirementRepository, decisionRepository, 
-				optionRepository);
+				optionRepository, null);
 	}
 	
 	public static ReqModificationRepository createReqModificationMarkRepository() {

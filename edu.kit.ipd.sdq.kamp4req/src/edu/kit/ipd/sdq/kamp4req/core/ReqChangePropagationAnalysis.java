@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.core.resources.IProject;
 import org.eclipse.emf.ecore.EObject;
 import org.palladiosimulator.pcm.core.entity.Entity;
 import org.palladiosimulator.pcm.repository.DataType;
@@ -46,6 +47,16 @@ public class ReqChangePropagationAnalysis extends AbstractISChangePropagationAna
 	private Collection<Requirement> markedRequirements;
 	private Collection<Decision> markedDecisions;
 	private Collection<Option> markedOptions;
+	private IProject project;
+	
+	/**
+	 * Creates a new instance of BPChangePropagationAnalysis which is aware of the location it is run.
+	 * @param project the project in which the change propagation analysis is run
+	 */
+	public ReqChangePropagationAnalysis(IProject project) {
+		super();
+		this.project = project;
+	}
 	
 	@Override
 	public void runChangePropagationAnalysis(ReqArchitectureVersion version) {
@@ -59,7 +70,7 @@ public class ReqChangePropagationAnalysis extends AbstractISChangePropagationAna
 	}
 	
 	private void prepareAnalysis(ReqArchitectureVersion version) {
-		this.setBpChangePropagationAnalysis(new BPChangePropagationAnalysis());
+		this.setBpChangePropagationAnalysis(new BPChangePropagationAnalysis(project));
 		this.setReqChangePropagationDueToSpecificationDependencies(ReqModificationmarksFactory.
 				eINSTANCE.createReqChangePropagationDueToSpecificationDependencies());
 		version.getModificationMarkRepository().getChangePropagationSteps().add(

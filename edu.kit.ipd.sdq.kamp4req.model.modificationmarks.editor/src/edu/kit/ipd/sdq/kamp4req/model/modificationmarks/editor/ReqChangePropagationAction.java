@@ -14,7 +14,7 @@ public class ReqChangePropagationAction extends AbstractChangePropagationAction<
 	
 	@Override
 	protected AbstractChangePropagationAnalysis<ReqArchitectureVersion> createChangePropagationAnalysis() {
-		return new ReqChangePropagationAnalysis();
+		return new ReqChangePropagationAnalysis(getProject());
 	}
 
 	@Override

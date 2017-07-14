@@ -2,6 +2,7 @@ package edu.kit.ipd.sdq.kamp4req.core;
 
 import java.util.Map;
 
+import org.eclipse.emf.ecore.util.ECrossReferenceAdapter;
 import org.palladiosimulator.pcm.repository.Repository;
 import org.palladiosimulator.pcm.system.System;
 import org.palladiosimulator.pcm.usagemodel.UsageModel;
@@ -13,6 +14,7 @@ import decisions.DecisionRepository;
 import decisions.DecisionsFactory;
 import edu.kit.ipd.sdq.kamp4is.model.fieldofactivityannotations.ISFieldOfActivityAnnotationsRepository;
 import edu.kit.ipd.sdq.kamp4is.model.modificationmarks.AbstractISModificationRepository;
+import edu.kit.ipd.sdq.kamp.architecture.CrossReferenceProvider;
 import edu.kit.ipd.sdq.kamp4bp.core.BPArchitectureVersion;
 import options.OptionRepository;
 import options.OptionsFactory;
@@ -35,9 +37,9 @@ public class ReqArchitectureVersion extends BPArchitectureVersion {
 			ComponentInternalDependencyRepository componentInternalDependencyRepository, 
 			Map<String, UsageModel> usageModels, DataModel dataModel, OrganizationEnvironmentModel
 			organizationEnvironmentModel, ReqRepository requirementsRepository, 
-			DecisionRepository decisionRepository, OptionRepository optionRepository) {
+			DecisionRepository decisionRepository, OptionRepository optionRepository, ECrossReferenceAdapter eCrossReferenceAdapter) {
 		super(name, repository, system, fieldOfActivityRepository, internalModificationMarkRepository,
-				componentInternalDependencyRepository, usageModels, dataModel, organizationEnvironmentModel);
+				componentInternalDependencyRepository, usageModels, dataModel, organizationEnvironmentModel, eCrossReferenceAdapter);
 		if (requirementsRepository == null) {
 			requirementsRepository = RequirementsFactory.eINSTANCE.createReqRepository();
 		}

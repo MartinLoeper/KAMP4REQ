@@ -23,7 +23,8 @@ Require-Bundle: org.eclipse.ui,
  edu.kit.ipd.sdq.kamp4is.model.fieldofactivityannotations,
  edu.kit.ipd.sdq.kamp4req.model.modificationmarks,
  edu.kit.ipd.sdq.kamp4bp.model.fieldofactivityannotations;bundle-version="1.0.0",
- edu.kit.ipd.sdq.kamp4is.model.modificationmarks.edit
+ edu.kit.ipd.sdq.kamp4is.model.modificationmarks.edit,
+ org.eclipse.emf.ecore
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
